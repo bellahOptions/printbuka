@@ -17,11 +17,11 @@ tailwind.config = {
             colors: {
                 ink: '#0f0f0f',
                 paper: '#f7f4ef',
-                accent: '#c8420a',
+                accent: '#c80a7f',
                 muted: '#7a7065',
                 border: '#ddd8d0',
                 card: '#ffffff',
-                gold: '#d4a843',
+                gold: '#d19406',
             },
         },
     },
@@ -37,18 +37,18 @@ tailwind.config = {
     }
     input:focus, select:focus, textarea:focus {
         background-color: #ffffff;
-        border-color: #c8420a !important;
+        border-color: #c80a7f !important;
         box-shadow: 0 0 0 3px rgba(200,66,10,0.08);
         outline: none;
     }
     .rating-scale input[type="radio"] { display: none; }
     .rating-scale input[type="radio"]:checked + label {
-        background-color: #c8420a;
-        border-color: #c8420a;
+        background-color: #c80a7f;
+        border-color: #c80a7f;
         color: white;
     }
     .option-item:has(input:checked) {
-        border-color: #c8420a;
+        border-color: #c80a7f;
         background-color: rgba(200,66,10,0.04);
     }
     select {
@@ -68,7 +68,7 @@ tailwind.config = {
         width: 200px; height: 200px;
         border: 1px solid rgba(212,168,67,0.2); border-radius: 50%;
     }
-    .submit-btn:hover { background-color: #c8420a !important; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(200,66,10,0.25); }
+    .submit-btn:hover { background-color: #c80a7f !important; transform: translateY(-1px); box-shadow: 0 8px 24px rgba(200,66,10,0.25); }
     .submit-btn { transition: all 0.2s; }
 </style>
 </head>
