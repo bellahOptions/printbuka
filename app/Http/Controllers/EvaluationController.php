@@ -114,4 +114,14 @@ class EvaluationController extends Controller
             'name' => session('submitted_name'),
         ]);
     }
+    public function show()
+    {
+        $evaluations = PerformanceEvaluation::latest()->get();
+        return view('evaluation.show', compact('evaluations'));
+    }
+    public function showDetail($id)
+{
+    $evaluation = PerformanceEvaluation::findOrFail($id);
+    return view('evaluation.showDetail', compact('evaluation'));
+}
 }
