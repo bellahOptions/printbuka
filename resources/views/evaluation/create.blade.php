@@ -91,7 +91,7 @@ tailwind.config = {
         <div class="mt-8 flex gap-8 flex-wrap">
             <div class="flex flex-col gap-0.5">
                 <span class="text-[10px] tracking-widest uppercase text-white/40">Period</span>
-                <span class="text-sm text-white/85 font-medium">2025 — Internal Review</span>
+                <span class="text-sm text-white/85 font-medium">Q1 2026 — Internal Review</span>
             </div>
             <div class="flex flex-col gap-0.5">
                 <span class="text-[10px] tracking-widest uppercase text-white/40">Confidentiality</span>
