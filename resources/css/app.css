@@ -14,6 +14,11 @@
   font-optical-sizing: auto;
   transition: all 0.3s ease-in-out;
 }
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Playfair Display", serif;
+    font-weight: bold;
+    line-height: 1.2;
+}
 :root {
     --pb-fire:  #E85D04;
     --pb-ember: #FF7520;
