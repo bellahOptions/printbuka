@@ -12,18 +12,18 @@
 <body class="bg-gray-950 text-gray-100 min-h-screen font-['DM_Sans']">
 
     {{-- TOP BAR --}}
-    <header class="bg-gray-900 border-b w-1/2 mx-auto border-gray-800 px-6 md:px-12 py-4 flex items-center justify-between">
-        <div class="flex items-center gap-3">
+    <header class="bg-gray-900 border-b md:w-1/2 mx-auto border-gray-800 px-6 md:px-12 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3 space-x-3">
             <img src="{{ asset('logo-dark.svg') }}" class="h-8" alt="Printbuka">
             <span class="text-xs tracking-[2px] uppercase text-gray-500 border-l border-gray-700 pl-3 hidden sm:inline">Staff Onboarding</span>
         </div>
-        <a href="{{ route('admin.login') }}" class="text-sm text-gray-400 hover:text-yellow-400 transition-colors">
+        <a href="{{ route('admin.login') }}" class="text-xs w-10/12 p-2 text-gray-400 hover:text-yellow-400 transition-colors">
             Already registered? <span class="text-yellow-500 font-semibold">Sign in →</span>
         </a>
     </header>
 
     {{-- HERO STRIP --}}
-    <div class="bg-gray-900 w-1/2 mx-auto border-b border-gray-800 px-6 md:px-12 py-10 relative overflow-hidden">
+    <div class="bg-gray-900 md:w-1/2 mx-auto border-b border-gray-800 px-6 md:px-12 py-10 relative overflow-hidden">
         <div class="absolute -top-16 -right-16 w-64 h-64 border border-yellow-500/8 rounded-full pointer-events-none"></div>
         <div class="max-w-3xl relative z-10 ">
             <p class="text-[10px] tracking-[2.5px] uppercase text-yellow-500 mb-3 flex items-center gap-2">

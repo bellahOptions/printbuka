@@ -181,7 +181,7 @@ class AdminController extends Controller
         Auth::guard('admin')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('internalMGT.login');
+        return redirect()->route('admin.login');
     }
 
     // ── PRIVATE: SECURE IMAGE PROCESSING ─────────────────────────────────────
