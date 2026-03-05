@@ -117,7 +117,7 @@ class AdminController extends Controller
             'email_verification_token' => null,
         ]);
 
-        return redirect()->route('internalMGT.login')
+        return redirect()->route('admin.login')
             ->with('success', 'Email verified! Your account is pending SuperAdmin activation before you can log in.');
     }
 
