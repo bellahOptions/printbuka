@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -11,6 +12,19 @@ Route::get('/', function () {
 Route::get('home', function () {
     return view('home');
 })->name('home');
+
+//Page ROUTES
+Route::get('/about-printbuka', [PagesController::class, 'aboutPage'])->name('about');
+//SERVICES ROUTES
+Route::get('/printbuka-services', [PagesController::class, 'servicesPage'])->name('services');
+Route::get('/printbuka-services/UV-DTF', [PagesController::class, 'uvdtf'])->name('uv-dtf');
+Route::get('/printbuka-services/directImage', [PagesController::class, 'directImage'])->name('directImage');
+Route::get('/printbuka-services/DTF', [PagesController::class, 'dtf'])->name('dtf');
+Route::get('/printbuka-services/engraving', [PagesController::class, 'engravePage'])->name('engraving');
+//Othe page routes
+Route::get('/shop-printbuka', [PagesController::class, 'shopPage'])->name('shop');
+Route::get('/printbuka-blog', [PagesController::class, 'blogPage'])->name('about');
+Route::get('/about-printbuka', [PagesController::class, 'aboutPage'])->name('about');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

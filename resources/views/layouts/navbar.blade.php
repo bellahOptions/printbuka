@@ -1,9 +1,3 @@
-{{--
-    resources/views/layouts/navbar.blade.php
-    Pure Tailwind CSS · No inline styles · DM Sans
-    Dynamic @guest / @auth · Alpine.js v3 required
---}}
-
 <header class="bg-white sticky top-0 z-50 border-b border-gray-100 shadow-sm">
 
     {{-- Brand accent stripe --}}
@@ -144,8 +138,9 @@
 
                 @foreach([
                     ['Gift Ideas',  'gift-ideas'],
-                    ['Bulk Orders', 'bulk-orders'],
-                    ['About',       'about'],
+                    ['Services',       'printbuka-services'],
+                    ['About',       'about-printbuka'],
+                    ['Blog',       'printbuka-Blog'],
                     ['Contact',     'contact'],
                 ] as [$label, $seg])
                 <a href="{{ url('/' . $seg) }}"

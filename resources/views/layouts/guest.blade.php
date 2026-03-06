@@ -22,7 +22,7 @@
             @endif
             </div>
             <div class="bg-white min-h-screen flex justify-center items-center">
-                <div class="form p-5 md:p-20 md:w-1/2">
+                <div class="form p-5 md:p-20 md:w-full">
                 <div class="flex justify-center my-4">
                 <a href="/">
                     <img src="{{ asset('logo.svg') }}" class="h-10 mb-4" alt="Printbuka Logo"/>
