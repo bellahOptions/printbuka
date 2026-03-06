@@ -16,6 +16,14 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // User::factory(10)->create();
+        $this->call([
+            AdminSeeder::class,
+            //Assuming JobSeeder exists and is called here
+            //JobCommentSeeder::class, // Uncomment when jobs exist
+           // AttendanceSeeder::class,
+            //DailyStaffLogSeeder::class,
+            //PerformanceEvaluationsSeeder::class,
+            ]);
 
         User::factory()->create([
             'name' => 'Test User',
