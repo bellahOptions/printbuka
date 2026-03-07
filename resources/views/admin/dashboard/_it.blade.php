@@ -1,6 +1,8 @@
 {{-- ── IT / Super Admin Dashboard ──────────────────────────────────────────
      Access: ALL data, ALL functions, ALL roles, NO limits
      ─────────────────────────────────────────────────────────────────────── --}}
+     @section('title', 'IT department Dashboard')
+     
 <div class="pb-page-header pb-fade-up pb-delay-1">
     <div>
         <div class="pb-greeting-eyebrow" data-greeting="true">Good morning</div>

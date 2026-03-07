@@ -32,6 +32,15 @@ Route::middleware(['auth:admin', \App\Http\Middleware\EnsureAdminIsActive::class
     Route::get('/admin/announcements/{id}/edit', [AdminController::class, 'editAnnouncement'])->name('admin.announcements.edit');
     Route::put('/admin/announcements/{id}', [AdminController::class, 'updateAnnouncement'])->name('admin.announcements.update');
 
+    //MANAGE USERS
+    Route::get('admin/manage/users', [AdminController::class, 'openUserManagement'])->name('manage-users');
+    Route::post('staff/{id}/activate', [AdminController::class, 'activateStaff'])->name('admin.activate');
+    Route::post('staff/{id}/reject', [AdminController::class, 'rejectStaff'])->name('admin.reject');
+    Route::post('staff/{id}/deactivate', [AdminController::class, 'deactivateStaff'])->name('admin.deactivate');
+
+    //JOB MANAGEMENT
+    Route::get('/admin/jobs/create', [JobController::class, 'create'])->name('create.jobs');
+
     //SETTINGS
     Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
 });

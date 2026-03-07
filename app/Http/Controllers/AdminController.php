@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\AdminEmailVerification;
 use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -371,5 +372,47 @@ class AdminController extends Controller
 
         // Both drivers failed — caller will store the raw validated file.
         return null;
+    }
+
+    public function openUserManagement()
+{
+    $admin = Auth::guard('admin')->user();
+    
+    // Get active admins
+    $pendingActivations = Admin::where('is_active', 0)->get(); // pending usually means inactive
+    $allAdmins = Admin::where('is_active', 1)->get();
+
+    // Get paginated users
+    $allUsers = User::paginate(10); // 10 users per page
+
+    return view('admin.functions.users', compact('admin', 'pendingActivations', 'allAdmins', 'allUsers'));
+}
+// Activate staff
+    public function activateStaff($id)
+    {
+        $staff = Admin::findOrFail($id); // fetch staff by ID
+        $staff->is_active = 1;           // set active
+        $staff->save();
+
+        return redirect()->back()->with('success', $staff->name . ' has been activated.');
+    }
+
+    //DEACTIVATE STAFF
+    public function deactivateStaff($id)
+    {
+        $staff = Admin::findOrFail($id); // fetch staff by ID
+        $staff->is_active = 0;           // set active
+        $staff->save();
+
+        return redirect()->back()->with('success', $staff->name . ' has been activated.');
+    }
+
+    // Reject staff
+    public function rejectStaff($id)
+    {
+        $staff = Admin::findOrFail($id); // fetch staff by ID
+        $staff->delete();                // delete rejected staff
+
+        return redirect()->back()->with('error', $staff->name . ' has been rejected.');
     }
 }

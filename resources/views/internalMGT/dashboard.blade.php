@@ -9,7 +9,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dashboard — {{ config('app.name', 'Printbuka') }}</title>
+    <title>@yield('title')— {{ config('app.name', 'Printbuka') }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -60,7 +60,7 @@
                 ['M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0', 'Announcements', '#', null],
             ],
             'admin' => [
-                ['M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z', 'Activate Accounts', '#', '!'],
+                ['M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z', 'Activate Accounts', 'manage-users', '!'],
                 ['M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z|M12 9v4|M12 17h.01', 'System Alerts', '#', '3'],
                 ['M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z|M12 8v4l3 3', 'Audit Log', '#', null],
                 ['M3 3h18v18H3z|M3 9h18|M9 21V9', 'Settings', '#', null],
@@ -157,14 +157,13 @@
         <div class="pb-brand">
             <img src="{{ asset('logo-dark.svg') }}" style="height:22px" alt="Printbuka"
                  onerror="this.style.display='none'">
-            <span class="pb-brand-text">Print<span class="pb-brand-dot">buka</span></span>
         </div>
 
         {{-- User pill --}}
         <div class="pb-user-pill">
             <div class="pb-avatar pb-avatar--md pb-avatar--{{ $roleKey }}">
                 @if($admin->photo)
-                    <img src="{{ $admin->photo_url }}" alt="{{ $admin->full_name }}">
+                    <img src="{{ asset('storage/photos/' . $admin->photo) }}" alt="{{ $admin->first_name }}" style="width:50px; height:50px; object-fit:cover;" />
                 @else
                     {{ strtoupper(substr($admin->first_name,0,1).substr($admin->last_name,0,1)) }}
                 @endif
@@ -173,7 +172,7 @@
                 <div class="pb-user-name">{{ $admin->first_name }} {{ $admin->last_name }}</div>
                 <div class="pb-user-role">{{ $roleLabel }}</div>
             </div>
-            <div class="pb-user-status"></div>
+            <div class="pb-user-status"></div> 
         </div>
 
         {{-- Nav --}}
@@ -290,6 +289,7 @@
         {{-- ── Role-specific content ── --}}
         <div class="pb-content">
             @include('admin.dashboard._' . $roleKey, ['roleLabel' => $roleLabel, 'roleKey' => $roleKey])
+            @yield('content')
         </div>
 
     </div>{{-- /pb-main --}}
