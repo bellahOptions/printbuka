@@ -54,10 +54,10 @@ class Job extends Model
         return $this->hasMany(JobComment::class);
     }
 
-    public function sopChecklist(): HasMany
-    {
-        return $this->hasMany(SopChecklist::class);
-    }
+    public function sopChecklist()
+{
+    return $this->hasOne(SopChecklist::class);
+}
 
     public function invoice()
     {

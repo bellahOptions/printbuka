@@ -1,21 +1,19 @@
 <?php
+
 // app/Http/Controllers/Admin/JobController.php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\InvoiceMail;
+use App\Mail\InvoiceReceiptMail;
+use App\Models\Invoice;
 use App\Models\Job;
-use App\Models\User;
 use App\Models\JobComment;
-use App\Models\SopChecklist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-
-use App\Models\Invoice;
-use App\Mail\InvoiceReceiptMail;
-use Illuminate\Support\Facades\Mail;
-use PDF; // alias for barryvdh/laravel-dompdf
-use App\Mail\InvoiceMail;
+use Illuminate\Support\Facades\Mail; // alias for barryvdh/laravel-dompdf
+use PDF;
 
 class JobController extends Controller
 {
@@ -25,8 +23,8 @@ class JobController extends Controller
         $query = Job::query();
 
         // Role-based filtering
-        if (!$admin->isSuperAdmin() && $admin->staff_role !== 'Operations Manager') {
-            switch($admin->staff_role) {
+        if (! $admin->isSuperAdmin() && $admin->staff_role !== 'Operations Manager') {
+            switch ($admin->staff_role) {
                 case 'Designer':
                     $query->where('assigned_designer', $admin->full_name);
                     break;
@@ -56,23 +54,23 @@ class JobController extends Controller
         }
 
         if ($request->search) {
-            $query->where(function($q) use ($request) {
+            $query->where(function ($q) use ($request) {
                 $q->where('job_order', 'like', "%{$request->search}%")
-                  ->orWhere('client_name', 'like', "%{$request->search}%")
-                  ->orWhere('client_phone', 'like', "%{$request->search}%");
+                    ->orWhere('client_name', 'like', "%{$request->search}%")
+                    ->orWhere('client_phone', 'like', "%{$request->search}%");
             });
         }
 
         $jobs = $query->with('creator')->latest()->paginate(20);
-        
+
         // Hide financial data for non-finance roles
-        if (!$admin->canAccessFinancials()) {
-            $jobs->each(function($job) {
+        if (! $admin->canAccessFinancials()) {
+            $jobs->each(function ($job) {
                 $job->makeHidden(['invoice_amount', 'amount_paid']);
             });
         }
 
-        return view('admin.jobs.index', [
+        return view('admin.functions.jobs.index', [
             'jobs' => $jobs,
             'admin' => $admin,
             'statuses' => $this->getStatuses(),
@@ -83,8 +81,8 @@ class JobController extends Controller
     public function create()
     {
         $admin = auth()->user();
-        
-        if (!$admin->canManageJobs()) {
+
+        if (! $admin->canManageJobs()) {
             abort(403, 'Unauthorized to create jobs');
         }
 
@@ -96,145 +94,145 @@ class JobController extends Controller
         ]);
     }
 
-public function store(Request $request)
-{
-    $admin = auth()->user();
-    
-    if (!$admin->canManageJobs()) {
-        abort(403);
+    public function store(Request $request)
+    {
+        $admin = auth()->user();
+
+        if (! $admin->canManageJobs()) {
+            abort(403);
+        }
+
+        $validated = $request->validate([
+            'client_name' => 'required|string',
+            'client_phone' => 'required|string',
+            'client_email' => 'nullable|email',
+            'client_address' => 'nullable|string',
+            'job_type' => 'required|string',
+            'size_format' => 'required|string',
+            'quantity' => 'required|integer|min:1',
+            'material' => 'nullable|string',
+            'finish' => 'nullable|string',
+            'brief_date' => 'required|date',
+            'priority' => 'required|in:🔴 Urgent,🟡 Normal,🟢 Low',
+        ]);
+
+        DB::transaction(function () use ($validated, $admin) {
+            // -------------------------
+            // Generate Job Order Number
+            // -------------------------
+            $year = date('Y');
+            $lastJob = Job::whereYear('created_at', $year)
+                ->orderBy('id', 'desc')
+                ->first();
+
+            $sequence = $lastJob ? intval(substr($lastJob->job_order, -4)) + 1 : 1;
+            $jobOrder = sprintf('PB-%s-%04d', $year, $sequence);
+
+            // -------------------------
+            // Create Job
+            // -------------------------
+            $job = Job::create([
+                'job_order' => $jobOrder,
+                'date_logged' => now(),
+                ...$validated,
+                'brief_received_by' => $admin->full_name,
+                'job_status' => 'Analyzing Job Brief',
+                'payment_status' => 'Awaiting Invoice',
+                'client_review_status' => 'Pending Client Feedback',
+                'created_by' => $admin->id,
+            ]);
+
+            // Create SOP checklist items
+            $this->createSopChecklist($job);
+
+            // -------------------------
+            // Create Invoice for Job
+            // -------------------------
+            $items = [
+                [
+                    'description' => $validated['job_type'],
+                    'size_format' => $validated['size_format'],
+                    'material' => $validated['material'] ?? '',
+                    'quantity' => $validated['quantity'],
+                    'unit_price' => 0,       // You can calculate price dynamically
+                    'discount' => 0,
+                    'amount' => 0,
+                ],
+            ];
+
+            $invoice = $job->invoice()->create([
+    'client_name' => $validated['client_name'],
+    'client_phone' => $validated['client_phone'],
+    'client_email' => $validated['client_email'],
+    'client_address' => $validated['client_address'] ?? '',
+    'date_issued' => now(),
+    'payment_due_by' => now()->addDays(7),
+    'items' => $items,
+    'subtotal' => 0,
+    'vat' => 0,
+    'discount' => 0,
+    'total_due' => 0,
+    'amount_paid' => 0,
+    'balance' => 0,
+    'payment_status' => 'Unpaid',
+    'created_by' => $admin->id,
+]);
+
+            // -------------------------
+            // Generate PDF
+            // -------------------------
+            $pdf = PDF::loadView('pdf.invoice', compact('invoice'));
+
+            $pdfPath = storage_path('app/public/invoices/'.$invoice->invoice_number.'.pdf');
+            $pdf->save($pdfPath);
+
+            // -------------------------
+            // Send Invoice via Email
+            // -------------------------
+            if ($invoice->client_email) {
+                Mail::to($invoice->client_email)
+                    ->send(new InvoiceMail($invoice, $pdfPath));
+            }
+        });
+
+        return redirect()->route('admin.functions.jobs.index')
+            ->with('success', 'Job and invoice created successfully. Invoice sent to client.');
     }
 
-    $validated = $request->validate([
-        'client_name' => 'required|string',
-        'client_phone' => 'required|string',
-        'client_email' => 'nullable|email',
-        'client_address' => 'nullable|string',
-        'job_type' => 'required|string',
-        'size_format' => 'required|string',
-        'quantity' => 'required|integer|min:1',
-        'material' => 'nullable|string',
-        'finish' => 'nullable|string',
-        'brief_date' => 'required|date',
-        'priority' => 'required|in:🔴 Urgent,🟡 Normal,🟢 Low',
-    ]);
+    public function markAsPaid(Invoice $invoice, Request $request)
+    {
+        $invoice->amount_paid = $invoice->total_due;
+        $invoice->payment_status = 'Paid';
+        $invoice->payment_date = now();
+        $invoice->save();
 
-    DB::transaction(function() use ($validated, $admin) {
-        // -------------------------
-        // Generate Job Order Number
-        // -------------------------
-        $year = date('Y');
-        $lastJob = Job::whereYear('created_at', $year)
-            ->orderBy('id', 'desc')
-            ->first();
-        
-        $sequence = $lastJob ? intval(substr($lastJob->job_order, -4)) + 1 : 1;
-        $jobOrder = sprintf('PB-%s-%04d', $year, $sequence);
-
-        // -------------------------
-        // Create Job
-        // -------------------------
-        $job = Job::create([
-            'job_order' => $jobOrder,
-            'date_logged' => now(),
-            ...$validated,
-            'brief_received_by' => $admin->full_name,
-            'job_status' => 'Analyzing Job Brief',
-            'payment_status' => 'Awaiting Invoice',
-            'client_review_status' => 'Pending Client Feedback',
-            'created_by' => $admin->id,
-        ]);
-
-        // Create SOP checklist items
-        $this->createSopChecklist($job);
-
-        // -------------------------
-        // Create Invoice for Job
-        // -------------------------
-        $items = [
-            [
-                'description' => $validated['job_type'],
-                'size_format' => $validated['size_format'],
-                'material' => $validated['material'] ?? '',
-                'quantity' => $validated['quantity'],
-                'unit_price' => 0,       // You can calculate price dynamically
-                'discount' => 0,
-                'amount' => 0,
-            ]
-        ];
-
-        $invoice = Invoice::create([
-            'job_id' => $job->id,
-            'client_name' => $validated['client_name'],
-            'client_phone' => $validated['client_phone'],
-            'client_email' => $validated['client_email'],
-            'client_address' => $validated['client_address'] ?? '',
-            'date_issued' => now(),
-            'payment_due_by' => now()->addDays(7),
-            'items' => $items,
-            'subtotal' => 0, // calculate if needed
-            'vat' => 0,
-            'discount' => 0,
-            'total_due' => 0,
-            'amount_paid' => 0,
-            'balance' => 0,
-            'payment_status' => 'Unpaid',
-            'created_by' => $admin->id,
-        ]);
-
-        // -------------------------
-        // Generate PDF
-        // -------------------------
+        // Generate PDF receipt
         $pdf = PDF::loadView('pdf.invoice', compact('invoice'));
-
-        $pdfPath = storage_path('app/public/invoices/' . $invoice->invoice_number . '.pdf');
+        $pdfPath = storage_path('app/public/invoices/'.$invoice->invoice_number.'-receipt.pdf');
         $pdf->save($pdfPath);
 
-        // -------------------------
-        // Send Invoice via Email
-        // -------------------------
+        // Send receipt to client
         if ($invoice->client_email) {
             Mail::to($invoice->client_email)
-                ->send(new InvoiceMail($invoice, $pdfPath));
+                ->send(new InvoiceReceiptMail($invoice, $pdfPath));
         }
-    });
 
-    return redirect()->route('admin.jobs.index')
-        ->with('success', 'Job and invoice created successfully. Invoice sent to client.');
-}
-public function markAsPaid(Invoice $invoice, Request $request)
-{
-    $invoice->amount_paid = $invoice->total_due;
-    $invoice->payment_status = 'Paid';
-    $invoice->payment_date = now();
-    $invoice->save();
-
-    // Generate PDF receipt
-    $pdf = PDF::loadView('pdf.invoice', compact('invoice'));
-    $pdfPath = storage_path('app/public/invoices/' . $invoice->invoice_number . '-receipt.pdf');
-    $pdf->save($pdfPath);
-
-    // Send receipt to client
-    if ($invoice->client_email) {
-        Mail::to($invoice->client_email)
-            ->send(new InvoiceReceiptMail($invoice, $pdfPath));
+        return back()->with('success', 'Invoice marked as paid and receipt sent to client.');
     }
-
-    return back()->with('success', 'Invoice marked as paid and receipt sent to client.');
-}
 
     public function show(Job $job)
     {
         $admin = auth()->user();
-        
-        if (!$admin->canViewCustomerData() && $job->assigned_designer !== $admin->full_name) {
+
+        if (! $admin->canViewCustomerData() && $job->assigned_designer !== $admin->full_name) {
             abort(403);
         }
 
-        $job->load(['comments' => function($q) {
+        $job->load(['comments' => function ($q) {
             $q->with('admin')->latest();
         }, 'sopChecklist']);
 
-        return view('admin.jobs.show', [
+        return view('admin.functions.jobs.show', [
             'job' => $job,
             'admin' => $admin,
             'canViewFinancials' => $admin->canAccessFinancials(),
@@ -246,17 +244,17 @@ public function markAsPaid(Invoice $invoice, Request $request)
     public function update(Request $request, Job $job)
     {
         $admin = auth()->user();
-        
-        if (!$job->canUserEdit($admin)) {
+
+        if (! $job->canUserEdit($admin)) {
             abort(403);
         }
 
         $rules = [
-            'job_status' => 'sometimes|in:' . implode(',', $this->getStatuses()),
+            'job_status' => 'sometimes|in:'.implode(',', $this->getStatuses()),
         ];
 
         // Role-specific validation
-        switch($admin->staff_role) {
+        switch ($admin->staff_role) {
             case 'Designer':
                 $rules['design_file_path'] = 'nullable|file|mimes:pdf,ai,psd,eps|max:10240';
                 $rules['design_approved_by_client'] = 'boolean';
@@ -278,7 +276,7 @@ public function markAsPaid(Invoice $invoice, Request $request)
 
         $validated = $request->validate($rules);
 
-        DB::transaction(function() use ($validated, $job, $admin, $request) {
+        DB::transaction(function () use ($validated, $job, $admin, $request) {
             // Handle file upload for designer
             if ($request->hasFile('design_file')) {
                 $path = $request->file('design_file')->store('designs', 'public');
@@ -306,7 +304,7 @@ public function markAsPaid(Invoice $invoice, Request $request)
     public function addComment(Request $request, Job $job)
     {
         $admin = auth()->user();
-        
+
         $validated = $request->validate([
             'comment' => 'required|string',
             'phase' => 'required|in:Intake,Design,Production,QC,Delivery,Review,General',
@@ -330,8 +328,8 @@ public function markAsPaid(Invoice $invoice, Request $request)
     public function approveComment(JobComment $comment)
     {
         $admin = auth()->user();
-        
-        if (!$admin->canApproveJobPhase()) {
+
+        if (! $admin->canApproveJobPhase()) {
             abort(403);
         }
 
@@ -368,8 +366,7 @@ public function markAsPaid(Invoice $invoice, Request $request)
         ];
 
         foreach ($sopItems as $item) {
-            SopChecklist::create([
-                'job_id' => $job->id,
+            $job->sopChecklist()->create([
                 'phase' => $item['phase'],
                 'step_number' => $item['step'],
                 'task' => $item['task'],

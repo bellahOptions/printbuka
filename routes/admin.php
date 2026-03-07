@@ -40,6 +40,11 @@ Route::middleware(['auth:admin', \App\Http\Middleware\EnsureAdminIsActive::class
 
     //JOB MANAGEMENT
     Route::get('/admin/jobs/create', [JobController::class, 'create'])->name('create.jobs');
+    Route::get('/admin/jobs/show', [JobController::class, 'show'])->name('jobs.show');
+    Route::post('/admin/jobs/edit/{$id}', [JobController::class, 'update'])->name('jobs.edit');
+    Route::post('/admin/jobs/delete/{$id}', [JobController::class, 'delete'])->name('jobs.destroy');
+
+    Route::get('/admin/jobs/invoice/create/{$id}', [JobController::class, 'update'])->name('invoice.create');
 
     //SETTINGS
     Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
@@ -51,7 +56,7 @@ Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(functi
     
     // Jobs
     Route::resource('jobs', JobController::class);
-    Route::post('/jobs/{job}/comments', [JobController::class, 'addComment'])->name('jobs.comments');
+    Route::post('/jobs/{job}/comments', [JobController::class, 'addComment'])->name('jobs.comment');
     Route::post('/jobs/comments/{comment}/approve', [JobController::class, 'approveComment'])->name('jobs.comments.approve');
     
     // Designer specific
