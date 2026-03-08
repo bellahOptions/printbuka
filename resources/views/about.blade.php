@@ -10,20 +10,20 @@
      PAGE HERO
 ════════════════════════════════════════════════ --}}
 <section class="relative bg-gray-900 overflow-hidden">
-    <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-25"
-         style="background-image: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&auto=format&fit=crop&q=80')">
+    <div class="absolute inset-0 bg-[url('https://unsplash.com/photos/a-machine-that-is-cutting-a-sheet-of-paper-g9_KP2fvFII')] bg-cover bg-center bg-no-repeat opacity-25"
+         style="background-image: url('https://unsplash.com/photos/a-machine-that-is-cutting-a-sheet-of-paper-g9_KP2fvFII')">
     </div>
-    <div class="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/90 to-gray-900/60"></div>
+    <div class="absolute inset-0 bg-gray-900"></div>
     <div class="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 py-24 sm:py-32">
         <div class="max-w-2xl">
             <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold
-                         tracking-widest uppercase bg-white/10 border border-white/20 text-white/70 mb-5">
+                         tracking-widest uppercase bg-pink-600 text-white mb-5">
                 ✦ Our Story
             </span>
             <h1 class="font-black text-white leading-[1.05] mb-5"
                 style="font-size: clamp(2.2rem, 5vw, 4rem)">
                 We Print.<br>
-                <span class="bg-gradient-to-r from-red-400 via-fuchsia-400 to-yellow-300 bg-clip-text text-transparent">
+                <span class="bg-pink-500 bg-clip-text text-transparent">
                     We Personalise.
                 </span><br>
                 We Deliver Joy.
@@ -34,7 +34,7 @@
             </p>
         </div>
     </div>
-    <div class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white to-transparent"></div>
+    
 </section>
 
 
@@ -46,8 +46,8 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-            <div class="bg-gradient-to-br from-red-50 to-red-100/60 border border-red-100 rounded-2xl p-8">
-                <div class="w-11 h-11 rounded-xl bg-red-600 flex items-center justify-center mb-5">
+            <div class="bg-gradient-to-br from-pink-50 to-pink-100/60 border border-pink-100 rounded-2xl p-8">
+                <div class="w-11 h-11 rounded-xl bg-pink-600 flex items-center justify-center mb-5">
                     <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                     </svg>
@@ -60,8 +60,8 @@
                 </p>
             </div>
 
-            <div class="bg-gradient-to-br from-fuchsia-50 to-fuchsia-100/60 border border-fuchsia-100 rounded-2xl p-8">
-                <div class="w-11 h-11 rounded-xl bg-fuchsia-600 flex items-center justify-center mb-5">
+            <div class="bg-gradient-to-br from-pink-50 to-pink-100/60 border border-pink-100 rounded-2xl p-8">
+                <div class="w-11 h-11 rounded-xl bg-pink-600 flex items-center justify-center mb-5">
                     <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
@@ -105,17 +105,17 @@
             {{-- Image side --}}
             <div class="lg:w-[45%] relative">
                 <div class="rounded-2xl overflow-hidden aspect-video lg:aspect-square shadow-xl shadow-gray-300/40">
-                    <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&auto=format&fit=crop&q=80"
+                    <img src="https://unsplash.com/photos/white-green-and-black-checked-textile-gjPSrg4xSNM"
                          alt="PrintBuka production team"
                          class="w-full h-full object-cover">
                 </div>
                 {{-- Floating stat cards --}}
                 <div class="absolute -bottom-5 -left-4 bg-white rounded-2xl shadow-xl shadow-gray-200/60 p-4 border border-gray-100">
-                    <p class="font-black text-3xl text-red-600">200+</p>
+                    <p class="font-black text-3xl text-pink-600">200+</p>
                     <p class="text-xs text-gray-500 font-medium mt-0.5">Products Available</p>
                 </div>
                 <div class="absolute -top-5 -right-4 bg-white rounded-2xl shadow-xl shadow-gray-200/60 p-4 border border-gray-100">
-                    <p class="font-black text-3xl text-fuchsia-600">24h</p>
+                    <p class="font-black text-3xl text-pink-600">24h</p>
                     <p class="text-xs text-gray-500 font-medium mt-0.5">Min. Turnaround</p>
                 </div>
             </div>
@@ -123,14 +123,14 @@
             {{-- Text side --}}
             <div class="lg:flex-1">
                 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold
-                             tracking-widest uppercase bg-gradient-to-r from-red-100 to-fuchsia-100
-                             text-fuchsia-700 mb-5">
+                             tracking-widest uppercase bg-gradient-to-r from-pink-100 to-pink-100
+                             text-pink-700 mb-5">
                     ✦ How We Started
                 </span>
                 <h2 class="font-black text-gray-800 leading-tight mb-6"
                     style="font-size: clamp(1.8rem, 3.5vw, 2.8rem)">
                     From a Small Studio to<br>
-                    <span class="bg-gradient-to-r from-red-600 to-fuchsia-600 bg-clip-text text-transparent">
+                    <span class="bg-pink-500 bg-clip-text text-transparent">
                         Nigeria's Print Hub
                     </span>
                 </h2>
@@ -138,15 +138,15 @@
                     <p>
                         PrintBuka started as a passion project inside the production floors of
                         <strong class="text-gray-800">Alet Inspirationz Prints Limited</strong> — a commercial
-                        print powerhouse that had already served hundreds of corporate clients across Lagos.
+                        print powerhouse that had already served hundpinks of corporate clients across Lagos.
                     </p>
                     <p>
                         We noticed a gap: individuals, small teams, and growing businesses couldn't access the
                         same quality of custom print and gifting that large corporations could. Minimum orders
-                        were in the hundreds, lead times were long, and the process was opaque.
+                        were in the hundpinks, lead times were long, and the process was opaque.
                     </p>
                     <p>
-                        So we built PrintBuka — a consumer-facing platform powered by the same industrial-grade
+                        So we built PrintBuka — a consumer-facing platform powepink by the same industrial-grade
                         equipment, staffed by the same expert team, but designed to serve everyone from a bride
                         ordering personalised mugs to a startup printing 10 branded hoodies.
                     </p>
@@ -157,10 +157,10 @@
                     </p>
                 </div>
                 <div class="flex flex-wrap gap-3 mt-8">
-                    <a href="{{ url('/shop') }}"
+                    <a href="{{ route('shop') }}"
                        class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold text-white
-                              bg-gradient-to-r from-red-600 to-fuchsia-600
-                              hover:opacity-90 hover:-translate-y-0.5 transition-all duration-200 shadow-sm shadow-red-200">
+                              bg-pink-600
+                              hover:opacity-90 hover:-translate-y-0.5 transition-all duration-200 shadow-sm shadow-pink-200">
                         Start an Order
                     </a>
                     <a href="{{ url('/contact') }}"
@@ -180,7 +180,7 @@
 {{-- ════════════════════════════════════════════════
      NUMBERS / STATS
 ════════════════════════════════════════════════ --}}
-<section class="bg-gradient-to-r from-red-600 via-fuchsia-600 to-fuchsia-700 py-16 px-5 sm:px-8 lg:px-10">
+<section class="bg-pink-600 py-16 px-5 sm:px-8 lg:px-10">
     <div class="max-w-7xl mx-auto">
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center text-white">
             @foreach([
@@ -207,12 +207,12 @@
 
         <div class="text-center mb-14">
             <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold
-                         tracking-widest uppercase bg-gradient-to-r from-red-100 to-fuchsia-100 text-fuchsia-700 mb-4">
+                         tracking-widest uppercase bg-gradient-to-r from-pink-100 to-pink-100 text-pink-700 mb-4">
                 ✦ How It Works
             </span>
             <h2 class="font-black text-gray-800" style="font-size: clamp(1.8rem, 3.5vw, 2.8rem)">
                 From Order to<br>
-                <span class="bg-gradient-to-r from-red-600 to-fuchsia-600 bg-clip-text text-transparent">
+                <span class="bg-gradient-to-r from-pink-600 to-pink-600 bg-clip-text text-transparent">
                     Your Door
                 </span>
             </h2>
@@ -220,8 +220,8 @@
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             @foreach([
-                ['01', 'bg-red-600',     'Place Your Order',      'Browse our catalog, pick your product, upload your design or brief, and check out online. No phone calls needed.'],
-                ['02', 'bg-fuchsia-600', 'Design & Proof',        'Our designers prepare your artwork. You review and approve a digital proof before anything goes to print — always.'],
+                ['01', 'bg-pink-600',     'Place Your Order',      'Browse our catalog, pick your product, upload your design or brief, and check out online. No phone calls needed.'],
+                ['02', 'bg-pink-600', 'Design & Proof',        'Our designers prepare your artwork. You review and approve a digital proof before anything goes to print — always.'],
                 ['03', 'bg-yellow-500',  'Production & QC',       'Your order goes into production on our industrial equipment. Every piece passes quality control before packaging.'],
                 ['04', 'bg-gray-800',    'Delivery or Pickup',    'We deliver Nigeria-wide or you can pick up from our Lagos studio. Track your order status in real time.'],
             ] as [$step, $color, $title, $body])
@@ -252,7 +252,7 @@
             <div class="flex-1">
                 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold
                              tracking-widest uppercase bg-white/10 border border-white/20 text-white/60 mb-5">
-                    ✦ Powered By
+                    ✦ Powepink By
                 </span>
                 <h2 class="font-black text-white text-2xl sm:text-3xl mb-4 leading-snug">
                     Alet Inspirationz<br>Prints Limited
@@ -296,10 +296,10 @@
             Quality guaranteed, proof before print, always.
         </p>
         <div class="flex flex-wrap items-center justify-center gap-4">
-            <a href="{{ url('/shop') }}"
+            <a href="{{ route('shop') }}"
                class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-sm font-bold text-white
-                      bg-gradient-to-r from-red-600 to-fuchsia-600
-                      hover:opacity-90 hover:-translate-y-0.5 transition-all duration-200 shadow-sm shadow-red-200">
+                      bg-pink-600
+                      hover:opacity-90 hover:-translate-y-0.5 transition-all duration-200 shadow-sm shadow-pink-200">
                 Browse Products
             </a>
             <a href="{{ url('/contact') }}"

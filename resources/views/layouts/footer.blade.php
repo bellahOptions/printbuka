@@ -51,7 +51,7 @@
                     ] as [$name, $path])
                     <a href="#" aria-label="{{ $name }}"
                        class="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center
-                              hover:bg-gradient-to-r hover:from-red-600 hover:to-red-950
+                              hover:bg-pink-600
                               transition-all duration-200 group">
                         <svg class="w-3.5 h-3.5 text-gray-400 group-hover:text-white transition-colors duration-200"
                              fill="currentColor" viewBox="0 0 24 24">
@@ -154,7 +154,7 @@
                                   transition-all duration-150">
                     <button type="submit"
                             class="px-5 py-2.5 rounded-xl text-sm font-bold text-white
-                                   bg-gradient-to-r from-red-600 to-red-950
+                                   bg-pink-600
                                    hover:opacity-90 transition-opacity duration-150 whitespace-nowrap">
                         Subscribe
                     </button>

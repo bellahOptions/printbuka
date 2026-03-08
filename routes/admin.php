@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\Admin\AttendanceController;
+use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\AdminBlogController;
 //use App\Http\Controllers\Admin\InvoiceController;
 //use App\Http\Controllers\Admin\StaffController;
 
@@ -45,6 +47,17 @@ Route::middleware(['auth:admin', \App\Http\Middleware\EnsureAdminIsActive::class
     Route::post('/admin/jobs/delete/{$id}', [JobController::class, 'delete'])->name('jobs.destroy');
 
     Route::get('/admin/jobs/invoice/create/{$id}', [JobController::class, 'update'])->name('invoice.create');
+
+    //BLOG TOUTES
+    Route::get('/admin/blog/management', [AdminBlogController::class, 'index'])->name('admin.blog.index');
+
+//EVALUATION
+Route::get('/evaluate-staff', [EvaluationController::class, 'create'])->name('evaluation.create');
+Route::post('/evaluation', [EvaluationController::class, 'store'])->name('evaluation.store');
+Route::get('/evaluation/success', [EvaluationController::class, 'success'])->name('evaluation.success');
+
+Route::get('/show/evaluation', [EvaluationController::class, 'show'])->name('evaluation.show');
+Route::get('/show/evaluation/{id}', [EvaluationController::class, 'showDetail'])->name('evaluation.showDetail');
 
     //SETTINGS
     Route::get('/admin/settings', [AdminController::class, 'settings'])->name('admin.settings');
@@ -102,6 +115,26 @@ Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(functi
     // Logout
     Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
 
+
+});
+
+Route::prefix('admin/blog')->middleware('auth')->group(function(){
+
+Route::get('/',[AdminBlogController::class,'index'])->name('admin.blog.index');
+
+Route::get('/create',[AdminBlogController::class,'create'])->name('admin.blog.create');
+
+Route::post('/store',[AdminBlogController::class,'store'])->name('admin.blog.store');
+
+Route::get('/edit/{blog}',[AdminBlogController::class,'edit'])->name('admin.blog.edit');
+
+Route::post('/update/{blog}',[AdminBlogController::class,'update'])->name('admin.blog.update');
+
+Route::post('/publish/{blog}',[AdminBlogController::class,'publish'])->name('admin.blog.publish');
+
+Route::post('/unpublish/{blog}',[AdminBlogController::class,'unpublish'])->name('admin.blog.unpublish');
+
+Route::delete('/delete/{blog}',[AdminBlogController::class,'delete'])->name('admin.blog.delete');
 
 });
 

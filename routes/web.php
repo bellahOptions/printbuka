@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,8 +23,11 @@ Route::get('/printbuka-services/DTF', [PagesController::class, 'dtf'])->name('dt
 Route::get('/printbuka-services/engraving', [PagesController::class, 'engravePage'])->name('engraving');
 //Othe page routes
 Route::get('/shop-printbuka', [PagesController::class, 'shopPage'])->name('shop');
-Route::get('/printbuka-blog', [PagesController::class, 'blogPage'])->name('about');
+Route::get('/printbuka-blog', [BlogController::class, 'blogPage'])->name('blog.index');
 Route::get('/about-printbuka', [PagesController::class, 'aboutPage'])->name('about');
+
+Route::get('/blog',[BlogController::class,'index'])->name('blog.index');
+Route::get('/blog/{slug}',[BlogController::class,'show'])->name('blog.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -36,12 +39,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/evaluate-staff', [EvaluationController::class, 'create'])->name('evaluation.create');
-Route::post('/evaluation', [EvaluationController::class, 'store'])->name('evaluation.store');
-Route::get('/evaluation/success', [EvaluationController::class, 'success'])->name('evaluation.success');
-
-Route::get('/show/evaluation', [EvaluationController::class, 'show'])->name('evaluation.show');
-Route::get('/show/evaluation/{id}', [EvaluationController::class, 'showDetail'])->name('evaluation.showDetail');
 
 //JOB ROUTES
 Route::get('/job', function () {

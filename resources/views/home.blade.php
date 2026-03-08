@@ -19,8 +19,8 @@ $slides = [
         'sub'     => 'Full-colour Direct-to-Film prints on t-shirts, hoodies & jerseys. Vibrant, wash-resistant, fast. Min. 1 piece.',
         'badge'   => 'For: Teams · Churches · Events · Corporates',
         'bg'      => 'https://images.unsplash.com/photo-1503341504253-dff4815485f1?w=1600&auto=format&fit=crop&q=80',
-        'btn_cls' => 'bg-red-600 hover:bg-red-700',
-        'dot_cls' => 'bg-red-500',
+        'btn_cls' => 'bg-pink-600 hover:bg-pink-700',
+        'dot_cls' => 'bg-pink-500',
         'cta1'    => 'Order T-Shirts',     'url1' => '/shop?category=tshirts',
         'cta2'    => 'See Samples',        'url2' => '/shop',
     ],
@@ -31,8 +31,8 @@ $slides = [
         'sub'     => 'Scratch-resistant, waterproof UV DTF transfers on bottles, mugs, tumblers & phone cases. Colour so rich you can feel it.',
         'badge'   => 'For: Brands · Gift Buyers · Event Organisers',
         'bg'      => 'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?w=1600&auto=format&fit=crop&q=80',
-        'btn_cls' => 'bg-red-950 hover:bg-red-950',
-        'dot_cls' => 'bg-red-950',
+        'btn_cls' => 'bg-pink-950 hover:bg-pink-950',
+        'dot_cls' => 'bg-pink-950',
         'cta1'    => 'Shop UV DTF',         'url1' => '/shop?category=uvdtf',
         'cta2'    => 'Get a Custom Quote',  'url2' => '/contact',
     ],
@@ -55,8 +55,8 @@ $slides = [
         'sub'     => 'Bespoke branded gifts that speak excellence — engraved trophies, premium pen sets, leather notebooks & custom gift boxes.',
         'badge'   => 'For: HR Teams · CEOs · Client Relations',
         'bg'      => 'https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=1600&auto=format&fit=crop&q=80',
-        'btn_cls' => 'bg-red-600 hover:bg-red-700',
-        'dot_cls' => 'bg-red-500',
+        'btn_cls' => 'bg-pink-600 hover:bg-pink-700',
+        'dot_cls' => 'bg-pink-500',
         'cta1'    => 'Shop Corporate Gifts', 'url1' => '/shop?category=corporate',
         'cta2'    => 'Request Bulk Quote',   'url2' => '/contact',
     ],
@@ -67,8 +67,8 @@ $slides = [
         'sub'     => 'Birthdays, anniversaries, graduations & retirements — our catalog has a meaningful customized gift for every milestone.',
         'badge'   => 'For: Individuals · Families · Couples',
         'bg'      => 'https://images.unsplash.com/photo-1607344645866-009c320b63e0?w=1600&auto=format&fit=crop&q=80',
-        'btn_cls' => 'bg-red-950 hover:bg-red-950',
-        'dot_cls' => 'bg-red-950',
+        'btn_cls' => 'bg-pink-950 hover:bg-pink-950',
+        'dot_cls' => 'bg-pink-950',
         'cta1'    => 'Find the Perfect Gift', 'url1' => '/gift-finder',
         'cta2'    => 'Browse All Gifts',      'url2' => '/shop?category=gifts',
     ],
@@ -103,7 +103,7 @@ $total = count($slides);
     @mouseenter="paused=true; stop()"
     @mouseleave="paused=false; tick()"
     role="region"
-    aria-label="Featured services slideshow">
+    aria-label="Featupink services slideshow">
 
     {{-- ── Slide backgrounds ── --}}
     @foreach($slides as $i => $slide)
@@ -156,7 +156,7 @@ $total = count($slides);
                 <h1 class="font-black text-white leading-[1.05] mb-5"
                     style="font-size: clamp(2.4rem, 6vw, 5rem)">
                     {{ $slide['h1'] }}<br>
-                    <span class="bg-gradient-to-r from-red-400 via-fuchsia-400 to-yellow-300 bg-clip-text text-transparent">
+                    <span class="bg-pink-600 bg-clip-text text-transparent">
                         {{ $slide['h2'] }}
                     </span>
                 </h1>
@@ -214,7 +214,7 @@ $total = count($slides);
             </button>
             <button @click="next()" aria-label="Next"
                     class="w-9 h-9 rounded-full flex items-center justify-center text-white
-                           bg-gradient-to-r from-red-600 to-red-950 hover:opacity-90 transition-opacity duration-200">
+                           bg-pink-600 hover:opacity-90 transition-opacity duration-200">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
                 </svg>
@@ -258,8 +258,8 @@ $total = count($slides);
         <h2 class="font-black text-gray-800 text-2xl sm:text-3xl text-center mb-8">Shop by Category</h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
             @foreach([
-                ['👕', 'T-Shirts',    '/shop?category=tshirts',   'from-red-50 to-red-100 hover:from-red-100 hover:to-red-200',           'text-red-600'],
-                ['🖨️', 'UV DTF',      '/shop?category=uvdtf',     'from-fuchsia-50 to-fuchsia-100 hover:from-fuchsia-100 hover:to-fuchsia-200', 'text-red-950'],
+                ['👕', 'T-Shirts',    '/shop?category=tshirts',   'from-pink-50 to-pink-100 hover:from-pink-100 hover:to-pink-200',           'text-pink-600'],
+                ['🖨️', 'UV DTF',      '/shop?category=uvdtf',     'from-fuchsia-50 to-fuchsia-100 hover:from-fuchsia-100 hover:to-fuchsia-200', 'text-pink-950'],
                 ['✍️', 'Engraving',   '/shop?category=laser',     'from-yellow-50 to-yellow-100 hover:from-yellow-100 hover:to-yellow-200', 'text-yellow-700'],
                 ['🎁', 'Gifts',       '/shop?category=gifts',     'from-orange-50 to-orange-100 hover:from-orange-100 hover:to-orange-200', 'text-orange-600'],
                 ['🏢', 'Corporate',   '/shop?category=corporate', 'from-slate-100 to-slate-200 hover:from-slate-200 hover:to-slate-300',   'text-slate-700'],
@@ -288,14 +288,14 @@ $total = count($slides);
         <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5 mb-12 sm:mb-16">
             <div>
                 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold
-                             tracking-widest uppercase bg-gradient-to-r from-red-100 to-fuchsia-100
-                             text-red-950 mb-3">
+                             tracking-widest uppercase bg-gradient-to-r from-pink-100 to-fuchsia-100
+                             text-pink-950 mb-3">
                     ✦ What We Do
                 </span>
                 <h2 class="font-black text-gray-800 leading-tight"
                     style="font-size: clamp(1.9rem, 4vw, 3rem)">
                     Your One-Stop Print &amp;<br>
-                    <span class="bg-gradient-to-r from-red-600 to-red-950 bg-clip-text text-transparent">
+                    <span class="bg-pink-600 bg-clip-text text-transparent">
                         Custom Gift Hub
                     </span>
                 </h2>
@@ -311,7 +311,7 @@ $total = count($slides);
         $services = [
             [
                 'num'   => '01',
-                'color' => 'red',
+                'color' => 'pink',
                 'icon'  => 'M6.5 3.5L3 7l3 2v10h12V9l3-2-3.5-3.5L15 5.5a3 3 0 01-6 0z',
                 'title' => 'T-Shirt DTF Printing',
                 'desc'  => 'Full-colour, high-definition prints on any fabric. Vibrant, wash-resistant designs perfect for corporate uniforms, team jerseys, events, and personal fashion.',
@@ -323,7 +323,7 @@ $total = count($slides);
                 'color' => 'fuchsia',
                 'icon'  => 'M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z',
                 'title' => 'UV DTF Printing',
-                'desc'  => 'Ultra-precise UV transfers for hard surfaces — bottles, mugs, tumblers & phone cases. Rich, textured prints that are scratch-resistant and waterproof.',
+                'desc'  => 'Ultra-precise UV transfers for hard surfaces — bottles, mugs, tumblers & phone cases. Rich, textupink prints that are scratch-resistant and waterproof.',
                 'link'  => '/shop?category=uvdtf',
                 'label' => 'Explore UV DTF',
             ],
@@ -338,7 +338,7 @@ $total = count($slides);
             ],
             [
                 'num'   => '04',
-                'color' => 'red',
+                'color' => 'pink',
                 'icon'  => 'M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z',
                 'title' => 'Direct Image Printing',
                 'desc'  => 'High-resolution direct-to-substrate printing for rigid and flexible surfaces. Great for signage, canvases, display items, and photo gifts.',
@@ -357,20 +357,20 @@ $total = count($slides);
         ];
 
         $cm = [
-            'red' => [
-                'icon_bg'   => 'bg-red-50',
-                'icon_text' => 'text-red-600',
-                'icon_hov'  => 'group-hover:bg-red-100',
-                'border'    => 'group-hover:border-t-red-500',
-                'link'      => 'text-red-600 hover:text-red-700',
-                'num'       => 'text-red-100',
+            'pink' => [
+                'icon_bg'   => 'bg-pink-50',
+                'icon_text' => 'text-pink-600',
+                'icon_hov'  => 'group-hover:bg-pink-100',
+                'border'    => 'group-hover:border-t-pink-500',
+                'link'      => 'text-pink-600 hover:text-pink-700',
+                'num'       => 'text-pink-100',
             ],
             'fuchsia' => [
                 'icon_bg'   => 'bg-fuchsia-50',
-                'icon_text' => 'text-red-950',
+                'icon_text' => 'text-pink-950',
                 'icon_hov'  => 'group-hover:bg-fuchsia-100',
-                'border'    => 'group-hover:border-t-red-950',
-                'link'      => 'text-red-950 hover:text-red-950',
+                'border'    => 'group-hover:border-t-pink-950',
+                'link'      => 'text-pink-950 hover:text-pink-950',
                 'num'       => 'text-fuchsia-100',
             ],
             'yellow' => [
@@ -417,7 +417,7 @@ $total = count($slides);
             </div>
             @endforeach
 
-            {{-- Bulk & Corporate — dark featured card --}}
+            {{-- Bulk & Corporate — dark featupink card --}}
             <div class="group bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-7 flex flex-col
                         hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300
                         sm:col-span-2 lg:col-span-1">
@@ -460,8 +460,8 @@ $total = count($slides);
         {{-- Stats bar --}}
         <div class="mt-10 rounded-2xl border border-gray-100 overflow-hidden grid grid-cols-2 sm:grid-cols-4">
             @foreach([
-                ['200+',   'Products',     'text-red-600'],
-                ['24–72h', 'Turnaround',   'text-red-950'],
+                ['200+',   'Products',     'text-pink-600'],
+                ['24–72h', 'Turnaround',   'text-pink-950'],
                 ['4',      'Technologies', 'text-yellow-500'],
                 ['1 Piece','Min. Order',   'text-gray-800'],
             ] as [$v, $l, $c])
@@ -489,13 +489,13 @@ $total = count($slides);
             <div class="lg:w-[38%] lg:sticky lg:top-24 lg:self-start">
                 <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-extrabold
                              tracking-widest uppercase bg-gradient-to-r from-yellow-100 to-fuchsia-100
-                             text-red-950 mb-4">
+                             text-pink-950 mb-4">
                     ✦ Why PrintBuka
                 </span>
                 <h2 class="font-black text-gray-800 leading-tight mb-5"
                     style="font-size: clamp(1.9rem, 4vw, 3rem)">
                     We Don't Just<br>Print. We Make<br>
-                    <span class="bg-gradient-to-r from-red-600 to-red-950 bg-clip-text text-transparent">
+                    <span class="bg-gradient-to-r from-pink-600 to-pink-950 bg-clip-text text-transparent">
                         Things Matter.
                     </span>
                 </h2>
@@ -505,10 +505,10 @@ $total = count($slides);
                     like it matters, because to you, it does.
                 </p>
                 <div class="flex flex-wrap gap-3 mb-7">
-                    <a href="{{ url('/shop') }}"
+                    <a href="{{ route('shop') }}"
                        class="inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold text-white
-                              bg-gradient-to-r from-red-600 to-red-950
-                              hover:opacity-90 hover:-translate-y-0.5 transition-all duration-200 shadow-sm shadow-red-200">
+                              bg-pink-600
+                              hover:opacity-90 hover:-translate-y-0.5 transition-all duration-200 shadow-sm shadow-pink-200">
                         Start Your Order
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -534,28 +534,28 @@ $total = count($slides);
                 @php
                 $reasons = [
                     ['icon'=>'M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z',
-                     'num'=>'01','bg'=>'bg-red-50','text'=>'text-red-600',
+                     'num'=>'01','bg'=>'bg-pink-50','text'=>'text-pink-600',
                      'title'=>'Premium Quality','body'=>'Industry-leading equipment on every job. What you approve in the proof is exactly what you receive.'],
                     ['icon'=>'M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5',
-                     'num'=>'02','bg'=>'bg-fuchsia-50','text'=>'text-red-950',
+                     'num'=>'02','bg'=>'bg-fuchsia-50','text'=>'text-pink-950',
                      'title'=>'Order Online, Easily','body'=>'Upload your design, pick your product, pay — all from your phone. No back-and-forth emails to get started.'],
                     ['icon'=>'M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z',
                      'num'=>'03','bg'=>'bg-yellow-50','text'=>'text-yellow-600',
                      'title'=>'Real-Time Tracking','body'=>'Monitor every stage — design approval through production to delivery — right from your dashboard.'],
                     ['icon'=>'M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7',
-                     'num'=>'04','bg'=>'bg-red-50','text'=>'text-red-600',
+                     'num'=>'04','bg'=>'bg-pink-50','text'=>'text-pink-600',
                      'title'=>'Expert Gift Curation','body'=>'Our Smart Gift Finder suggests the perfect custom item based on recipient, occasion, and budget.'],
                     ['icon'=>'M13 10V3L4 14h7v7l9-11h-7z',
-                     'num'=>'05','bg'=>'bg-fuchsia-50','text'=>'text-red-950',
+                     'num'=>'05','bg'=>'bg-fuchsia-50','text'=>'text-pink-950',
                      'title'=>'Fast Turnaround','body'=>'Most standard orders completed within 24–72 hours of design approval. Rush options available.'],
                     ['icon'=>'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
                      'num'=>'06','bg'=>'bg-yellow-50','text'=>'text-yellow-600',
-                     'title'=>'Proven Heritage','body'=>'Powered by Alet Inspirationz Prints Limited — years of commercial print production behind every order.'],
+                     'title'=>'Proven Heritage','body'=>'Powepink by Alet Inspirationz Prints Limited — years of commercial print production behind every order.'],
                 ];
                 @endphp
 
                 @foreach($reasons as $r)
-                <div class="group border-l-2 border-gray-200 hover:border-red-500 pl-5 py-5
+                <div class="group border-l-2 border-gray-200 hover:border-pink-500 pl-5 py-5
                             border-b border-b-gray-100 last:border-b-0 transition-all duration-200">
                     <div class="flex items-start gap-4">
                         <div class="w-10 h-10 rounded-xl {{ $r['bg'] }} {{ $r['text'] }} flex items-center justify-center
@@ -582,7 +582,7 @@ $total = count($slides);
 {{-- ════════════════════════════════════════════════
      CTA BANNER
 ════════════════════════════════════════════════ --}}
-<section class="bg-gradient-to-r from-red-600 via-red-950 to-red-950 py-16 px-5 sm:px-8 lg:px-10">
+<section class="bg-gradient-to-r from-pink-600 via-pink-950 to-pink-950 py-16 px-5 sm:px-8 lg:px-10">
     <div class="max-w-4xl mx-auto text-center">
         <h2 class="font-black text-white text-2xl sm:text-4xl mb-4 leading-tight">
             Ready to Print Something Amazing?
@@ -592,9 +592,9 @@ $total = count($slides);
             Fast turnaround, unmatched quality, and support every step of the way.
         </p>
         <div class="flex flex-wrap items-center justify-center gap-4">
-            <a href="{{ url('/shop') }}"
+            <a href="{{ route('shop') }}"
                class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl text-sm font-bold
-                      text-red-950 bg-white hover:bg-gray-50 hover:-translate-y-0.5
+                      text-pink-950 bg-white hover:bg-gray-50 hover:-translate-y-0.5
                       hover:shadow-lg transition-all duration-200">
                 Start Shopping
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">

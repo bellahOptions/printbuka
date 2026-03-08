@@ -55,6 +55,7 @@
                 ['M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z|M14 2v6h6|M16 13H8|M16 17H8|M10 9H8', 'Evaluations', '#', null],
                 ['M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2|M23 21v-2a4 4 0 0 0-3-3.87|M16 3.13a4 4 0 0 1 0 7.75', 'Staff Management', '#', null],
                 ['M22 12h-4l-3 9L9 3l-3 9H2', 'Performance', '#', null],
+                ['M22 12h-4l-3 9L9 3l-3 9H2', 'Blog Management', 'admin.blog.index', null],
                 ['M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z', 'All Jobs', '#', '7'],
                 ['M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z', 'Finance Overview', '#', null],
                 ['M22 17H2a3 3 0 0 0 3-3V9a7 7 0 0 1 14 0v5a3 3 0 0 0 3 3zm-8.27 4a2 2 0 0 1-3.46 0', 'Announcements', '#', null],

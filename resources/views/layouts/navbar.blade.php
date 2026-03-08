@@ -1,7 +1,7 @@
 <header class="bg-white sticky top-0 z-50 border-b border-gray-100 shadow-sm">
 
     {{-- Brand accent stripe --}}
-    <div class="h-1 bg-gradient-to-r from-red-600 via-red-950 to-yellow-400"></div>
+    <div class="h-1 bg-gradient-to-r from-pink-600 via-pink-950 to-yellow-400"></div>
 
     <nav class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10"
          x-data="{ open: false, shopOpen: false }">
@@ -20,14 +20,14 @@
 
                 <a href="{{ url('/') }}"
                    class="text-sm font-medium transition-colors duration-150
-                          {{ request()->is('/') ? 'text-red-600 border-b-2 border-red-500 pb-0.5' : 'text-gray-700 hover:text-red-600' }}">
+                          {{ request()->is('/') ? 'text-pink-600 border-b-2 border-pink-500 pb-0.5' : 'text-gray-700 hover:text-pink-600' }}">
                     Home
                 </a>
 
                 {{-- Shop mega-menu (CSS group hover) --}}
                 <div class="relative group">
-                    <button class="flex items-center gap-1 text-sm font-medium text-gray-700
-                                   group-hover:text-red-600 transition-colors duration-150
+                    <button id="shop" class="shop-menu flex items-center gap-1 text-sm font-medium text-gray-700
+                                   group-hover:text-pink-600 transition-colors duration-150
                                    bg-transparent border-0 p-0 cursor-pointer">
                         Shop
                         <svg class="w-3.5 h-3.5 mt-0.5 transition-transform duration-200 group-hover:rotate-180"
@@ -44,12 +44,12 @@
                                 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 group-hover:pointer-events-auto
                                 transition-all duration-200">
 
-                        <div class="h-0.5 rounded-t-2xl bg-gradient-to-r from-red-600 via-red-950 to-yellow-400"></div>
+                        <div class="h-0.5 rounded-t-2xl bg-pink-600"></div>
 
                         <div class="p-6 grid grid-cols-4 gap-5">
 
                             <div>
-                                <p class="text-[10px] font-extrabold tracking-widest uppercase text-red-500 mb-3">Apparel Branding</p>
+                                <p class="text-[10px] font-extrabold tracking-widest uppercase text-pink-500 mb-3">Apparel Branding</p>
                                 @foreach([
                                     ['DTF T-Shirts',     '/shop/dtf-tshirts'],
                                     ['UV DTF Prints',    '/shop/uvdtf'],
@@ -58,16 +58,16 @@
                                 ] as [$label, $href])
                                 <a href="{{ url($href) }}"
                                    class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-gray-600
-                                          font-medium hover:bg-red-50 hover:text-red-600 hover:pl-3.5
+                                          font-medium hover:bg-pink-50 hover:text-pink-600 hover:pl-3.5
                                           transition-all duration-150">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-red-400 shrink-0"></span>
+                                    <span class="w-1.5 h-1.5 rounded-full bg-pink-400 shrink-0"></span>
                                     {{ $label }}
                                 </a>
                                 @endforeach
                             </div>
 
                             <div>
-                                <p class="text-[10px] font-extrabold tracking-widest uppercase text-red-950 mb-3">Custom Gifts</p>
+                                <p class="text-[10px] font-extrabold tracking-widest uppercase text-pink-950 mb-3">Custom Gifts</p>
                                 @foreach([
                                     ['Custom Mugs',     '/shop/mugs'],
                                     ['Gift Boxes',      '/shop/gift-boxes'],
@@ -76,9 +76,9 @@
                                 ] as [$label, $href])
                                 <a href="{{ url($href) }}"
                                    class="flex items-center gap-2 px-2 py-1.5 rounded-lg text-sm text-gray-600
-                                          font-medium hover:bg-fuchsia-50 hover:text-red-950 hover:pl-3.5
+                                          font-medium hover:bg-fuchsia-50 hover:text-pink-950 hover:pl-3.5
                                           transition-all duration-150">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-red-950 shrink-0"></span>
+                                    <span class="w-1.5 h-1.5 rounded-full bg-pink-950 shrink-0"></span>
                                     {{ $label }}
                                 </a>
                                 @endforeach
@@ -122,7 +122,7 @@
                                 <div class="mt-4 bg-gradient-to-br from-orange-50 to-pink-50 border border-pink-100 rounded-xl p-3.5">
                                     <p class="text-sm font-bold text-gray-800 mb-1">🎁 Gift Finder</p>
                                     <p class="text-xs text-gray-500 leading-relaxed mb-2">Not sure what to order? Get a personalised recommendation.</p>
-                                    <a href="{{ url('/gift-finder') }}" class="text-xs font-bold text-red-950 hover:text-fuchsia-800 transition-colors">Try it free →</a>
+                                    <a href="{{ url('/gift-finder') }}" class="text-xs font-bold text-pink-950 hover:text-fuchsia-800 transition-colors">Try it free →</a>
                                 </div>
                             </div>
 
@@ -130,7 +130,7 @@
 
                         <div class="border-t border-gray-100 px-6 py-2.5 flex items-center justify-between bg-gray-50/80 rounded-b-2xl">
                             <span class="text-xs text-gray-400">200+ products · min. 1 piece · 24–72h turnaround</span>
-                            <a href="{{ url('/shop') }}" class="text-xs font-bold text-red-600 hover:text-red-700 transition-colors">View Full Shop →</a>
+                            <a href="{{ url('/shop') }}" class="text-xs font-bold text-pink-600 hover:text-pink-700 transition-colors">View Full Shop →</a>
                         </div>
 
                     </div>
@@ -145,7 +145,7 @@
                 ] as [$label, $seg])
                 <a href="{{ url('/' . $seg) }}"
                    class="text-sm font-medium transition-colors duration-150
-                          {{ request()->is($seg) ? 'text-red-600' : 'text-gray-700 hover:text-red-600' }}">
+                          {{ request()->is($seg) ? 'text-pink-600' : 'text-gray-700 hover:text-pink-600' }}">
                     {{ $label }}
                 </a>
                 @endforeach
@@ -167,7 +167,7 @@
                               d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
                     </svg>
                     <span class="absolute -top-1 -right-1.5 min-w-[16px] h-4 rounded-full
-                                 bg-gradient-to-r from-red-600 to-red-950
+                                 bg-yellow-600
                                  text-white text-[9px] font-extrabold flex items-center justify-center px-0.5">
                         0
                     </span>
@@ -182,13 +182,13 @@
                 {{-- ── GUEST ── --}}
                 @guest
                     <a href="{{ route('login') }}"
-                       class="text-xs font-bold text-white px-4 py-2 rounded-lg shadow-sm shadow-red-200
-                              bg-gradient-to-r from-red-600 to-red-950 hover:opacity-90 transition-opacity duration-150">
+                       class="text-xs font-bold text-white px-4 py-2 rounded-lg shadow-sm shadow-pink-200
+                              bg-pink-600 hover:opacity-90 transition-opacity duration-150">
                         Login
                     </a>
                     <a href="{{ route('register') }}"
-                       class="text-xs font-bold text-red-600 border border-red-200 px-4 py-2 rounded-lg
-                              hover:bg-red-50 transition-colors duration-150">
+                       class="text-xs font-bold text-pink-600 border border-pink-200 px-4 py-2 rounded-lg
+                              hover:bg-pink-50 transition-colors duration-150">
                         Sign Up
                     </a>
                 @endguest
@@ -199,7 +199,7 @@
                         <button class="flex items-center gap-2 bg-transparent border-0 p-0 cursor-pointer">
                             <img src="{{ Auth::user()->avatar ?? 'https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name) . '&background=DC2626&color=fff&size=32' }}"
                                  alt="{{ Auth::user()->name }}"
-                                 class="w-8 h-8 rounded-full object-cover border-2 border-red-100">
+                                 class="w-8 h-8 rounded-full object-cover border-2 border-pink-100">
                             <span class="text-sm font-semibold text-gray-700 max-w-[90px] truncate">
                                 {{ Str::words(Auth::user()->name, 1, '') }}
                             </span>
@@ -243,7 +243,7 @@
                                     @csrf
                                     <button type="submit"
                                             class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg
-                                                   text-sm text-red-600 font-medium hover:bg-red-50 transition-colors duration-100">
+                                                   text-sm text-pink-600 font-medium hover:bg-pink-50 transition-colors duration-100">
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                   d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
@@ -269,7 +269,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round"
                               d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
                     </svg>
-                    <span class="absolute -top-1 -right-1.5 min-w-[14px] h-3.5 rounded-full bg-red-600
+                    <span class="absolute -top-1 -right-1.5 min-w-[14px] h-3.5 rounded-full bg-pink-600
                                  text-white text-[8px] font-extrabold flex items-center justify-center px-0.5">0</span>
                 </a>
 
@@ -303,7 +303,7 @@
             <div class="flex items-center gap-3 py-4 border-b border-gray-100 mb-1">
                 <img src="{{ Auth::user()->avatar ?? 'https://ui-avatars.com/api/?name=' . urlencode(Auth::user()->name) . '&background=DC2626&color=fff&size=32' }}"
                      alt="{{ Auth::user()->name }}"
-                     class="w-9 h-9 rounded-full object-cover border-2 border-red-100">
+                     class="w-9 h-9 rounded-full object-cover border-2 border-pink-100">
                 <div>
                     <p class="text-sm font-bold text-gray-800">{{ Auth::user()->name }}</p>
                     <p class="text-xs text-gray-400">{{ Auth::user()->email }}</p>
@@ -313,7 +313,7 @@
 
             <a href="{{ url('/') }}"
                class="flex justify-between py-3.5 border-b border-gray-100 text-sm font-semibold
-                      text-gray-700 hover:text-red-600 transition-colors">
+                      text-gray-700 hover:text-pink-600 transition-colors">
                 Home
             </a>
 
@@ -329,15 +329,15 @@
                     </svg>
                 </button>
                 <div x-show="shopOpen" x-transition x-cloak class="pb-3">
-                    <p class="text-[9px] font-extrabold tracking-widest uppercase text-red-500 mt-2 mb-1 pl-3">Apparel</p>
-                    <a href="{{ url('/shop/dtf-tshirts') }}" class="flex items-center gap-2 pl-3 py-1.5 text-xs font-medium text-gray-600 hover:text-red-600 transition-colors"><span class="w-1 h-1 rounded-full bg-red-400"></span>DTF T-Shirts</a>
-                    <a href="{{ url('/shop/uvdtf') }}"        class="flex items-center gap-2 pl-3 py-1.5 text-xs font-medium text-gray-600 hover:text-red-600 transition-colors"><span class="w-1 h-1 rounded-full bg-red-400"></span>UV DTF Prints</a>
-                    <a href="{{ url('/shop/hoodies') }}"      class="flex items-center gap-2 pl-3 py-1.5 text-xs font-medium text-gray-600 hover:text-red-600 transition-colors"><span class="w-1 h-1 rounded-full bg-red-400"></span>Custom Hoodies</a>
+                    <p class="text-[9px] font-extrabold tracking-widest uppercase text-pink-500 mt-2 mb-1 pl-3">Apparel</p>
+                    <a href="{{ url('/shop/dtf-tshirts') }}" class="flex items-center gap-2 pl-3 py-1.5 text-xs font-medium text-gray-600 hover:text-pink-600 transition-colors"><span class="w-1 h-1 rounded-full bg-pink-400"></span>DTF T-Shirts</a>
+                    <a href="{{ url('/shop/uvdtf') }}"        class="flex items-center gap-2 pl-3 py-1.5 text-xs font-medium text-gray-600 hover:text-pink-600 transition-colors"><span class="w-1 h-1 rounded-full bg-pink-400"></span>UV DTF Prints</a>
+                    <a href="{{ url('/shop/hoodies') }}"      class="flex items-center gap-2 pl-3 py-1.5 text-xs font-medium text-gray-600 hover:text-pink-600 transition-colors"><span class="w-1 h-1 rounded-full bg-pink-400"></span>Custom Hoodies</a>
 
-                    <p class="text-[9px] font-extrabold tracking-widest uppercase text-red-950 mt-3 mb-1 pl-3">Gifts</p>
-                    <a href="{{ url('/shop/mugs') }}"         class="flex items-center gap-2 pl-3 py-1.5 text-xs font-medium text-gray-600 hover:text-red-950 transition-colors"><span class="w-1 h-1 rounded-full bg-red-950"></span>Custom Mugs</a>
-                    <a href="{{ url('/shop/gift-boxes') }}"   class="flex items-center gap-2 pl-3 py-1.5 text-xs font-medium text-gray-600 hover:text-red-950 transition-colors"><span class="w-1 h-1 rounded-full bg-red-950"></span>Gift Boxes</a>
-                    <a href="{{ url('/shop/frames') }}"       class="flex items-center gap-2 pl-3 py-1.5 text-xs font-medium text-gray-600 hover:text-red-950 transition-colors"><span class="w-1 h-1 rounded-full bg-red-950"></span>Photo Frames</a>
+                    <p class="text-[9px] font-extrabold tracking-widest uppercase text-pink-950 mt-3 mb-1 pl-3">Gifts</p>
+                    <a href="{{ url('/shop/mugs') }}"         class="flex items-center gap-2 pl-3 py-1.5 text-xs font-medium text-gray-600 hover:text-pink-950 transition-colors"><span class="w-1 h-1 rounded-full bg-pink-950"></span>Custom Mugs</a>
+                    <a href="{{ url('/shop/gift-boxes') }}"   class="flex items-center gap-2 pl-3 py-1.5 text-xs font-medium text-gray-600 hover:text-pink-950 transition-colors"><span class="w-1 h-1 rounded-full bg-pink-950"></span>Gift Boxes</a>
+                    <a href="{{ url('/shop/frames') }}"       class="flex items-center gap-2 pl-3 py-1.5 text-xs font-medium text-gray-600 hover:text-pink-950 transition-colors"><span class="w-1 h-1 rounded-full bg-pink-950"></span>Photo Frames</a>
 
                     <p class="text-[9px] font-extrabold tracking-widest uppercase text-yellow-600 mt-3 mb-1 pl-3">Engraving</p>
                     <a href="{{ url('/shop/engraved-pens') }}"  class="flex items-center gap-2 pl-3 py-1.5 text-xs font-medium text-gray-600 hover:text-yellow-600 transition-colors"><span class="w-1 h-1 rounded-full bg-yellow-400"></span>Engraved Pens</a>
@@ -347,14 +347,14 @@
                     <a href="{{ url('/shop/offset') }}"      class="flex items-center gap-2 pl-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-800 transition-colors"><span class="w-1 h-1 rounded-full bg-gray-400"></span>Offset Printing</a>
                     <a href="{{ url('/shop/packaging') }}"   class="flex items-center gap-2 pl-3 py-1.5 text-xs font-medium text-gray-600 hover:text-gray-800 transition-colors"><span class="w-1 h-1 rounded-full bg-gray-400"></span>Packaging</a>
 
-                    <a href="{{ url('/shop') }}" class="flex items-center gap-1 pl-3 py-2 mt-1 text-xs font-bold text-red-600 hover:text-red-700">View All Products →</a>
+                    <a href="{{ url('/shop') }}" class="flex items-center gap-1 pl-3 py-2 mt-1 text-xs font-bold text-pink-600 hover:text-pink-700">View All Products →</a>
                 </div>
             </div>
 
             @foreach([['Gift Ideas','gift-ideas'],['Bulk Orders','bulk-orders'],['About','about'],['Contact','contact']] as [$label,$seg])
             <a href="{{ url('/'.$seg) }}"
                class="flex justify-between py-3.5 border-b border-gray-100 text-sm font-semibold
-                      text-gray-700 hover:text-red-600 transition-colors">
+                      text-gray-700 hover:text-pink-600 transition-colors">
                 {{ $label }}
             </a>
             @endforeach
@@ -369,27 +369,27 @@
                 @guest
                 <a href="{{ route('login') }}"
                    class="text-center py-2.5 text-sm font-bold text-white rounded-xl
-                          bg-gradient-to-r from-red-600 to-red-950 hover:opacity-90 transition-opacity">
+                          bg-gradient-to-r from-pink-600 to-pink-950 hover:opacity-90 transition-opacity">
                     Login
                 </a>
                 <a href="{{ route('register') }}"
-                   class="text-center py-2.5 text-sm font-bold text-red-600 border border-red-200
-                          rounded-xl hover:bg-red-50 transition-colors">
+                   class="text-center py-2.5 text-sm font-bold text-pink-600 border border-pink-200
+                          rounded-xl hover:bg-pink-50 transition-colors">
                     Create Account
                 </a>
                 @endguest
 
                 @auth
                 <a href="{{ url('/account') }}"
-                   class="text-center py-2.5 text-sm font-bold text-red-950 border border-fuchsia-200
+                   class="text-center py-2.5 text-sm font-bold text-pink-950 border border-fuchsia-200
                           rounded-xl hover:bg-fuchsia-50 transition-colors">
                     My Account
                 </a>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <button type="submit"
-                            class="w-full py-2.5 text-sm font-bold text-red-600 border border-red-200
-                                   rounded-xl hover:bg-red-50 transition-colors">
+                            class="w-full py-2.5 text-sm font-bold text-pink-600 border border-pink-200
+                                   rounded-xl hover:bg-pink-50 transition-colors">
                         Sign Out
                     </button>
                 </form>
